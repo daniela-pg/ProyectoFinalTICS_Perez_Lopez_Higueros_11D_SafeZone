@@ -468,6 +468,7 @@ footer { background: #050d17; padding: 35px 30px; }
     .prototype-image { height: 300px; }
     .footer-container { flex-direction: column; text-align: center; }
     .modal-content { padding: 30px; }
+   }
 
    /* =====================================================
    EQUIPO
@@ -980,5 +981,4 @@ footer { background: #050d17; padding: 35px 30px; }
         justify-content: center;
     }
 
-}
 }
