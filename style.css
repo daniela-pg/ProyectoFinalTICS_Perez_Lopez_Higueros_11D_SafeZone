@@ -430,47 +430,169 @@ footer { background: #050d17; padding: 35px 30px; }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 
 /* RESPONSIVE */
+/* =====================================================
+   RESPONSIVE ORIGINAL
+===================================================== */
+
 @media (max-width: 950px) {
     nav {
-        position: absolute; top: 78px; left: 0; width: 100%; padding: 20px;
-        background: #07111f; flex-direction: column; gap: 20px;
-        border-bottom: 1px solid var(--border); display: none;
+        position: absolute;
+        top: 78px;
+        left: 0;
+        width: 100%;
+        padding: 20px;
+        background: #07111f;
+        flex-direction: column;
+        gap: 20px;
+        border-bottom: 1px solid var(--border);
+        display: none;
     }
-    nav.active { display: flex; }
-    .nav-button { display: none; }
-    .menu-button { display: block; }
-    .hero-container,.solution-grid,.prototype-grid { grid-template-columns: 1fr; }
-    .hero-container { gap: 70px; }
-    .hero-content { text-align: center; }
-    .hero-content > p { margin-left: auto; margin-right: auto; }
-    .hero-buttons,.hero-stats { justify-content: center; }
-    .solution-content { order: -1; }
-    .process-grid { grid-template-columns: 1fr 1fr; }
-    .benefits-grid { grid-template-columns: 1fr 1fr; }
-    .benefit-card.large { grid-row: auto; min-height: 240px; }
-    .alert-card { right: 10px; }
-}
-@media (max-width: 600px) {
-    .nav-container { padding: 0 20px; }
-    .section { padding: 85px 20px; }
-    .hero-container { padding: 60px 20px; }
-    .hero h1 { font-size: 48px; }
-    .hero-stats { gap: 25px; }
-    .dashboard { padding: 12px; }
-    .map { height: 250px; }
-    .alert-card { position: relative; right: auto; bottom: auto; width: 100%; margin-top: 15px; }
-    .problem-grid,.process-grid,.benefits-grid { grid-template-columns: 1fr; }
-    .solution-features { grid-template-columns: 1fr; }
-    .solution-visual { min-height: 350px; }
-    .circle-main { width: 230px; height: 230px; }
-    .simulation-header { align-items: flex-start; flex-direction: column; gap: 25px; }
-    .simulation-area { height: 330px; }
-    .prototype-image { height: 300px; }
-    .footer-container { flex-direction: column; text-align: center; }
-    .modal-content { padding: 30px; }
-   }
 
-   /* =====================================================
+    nav.active {
+        display: flex;
+    }
+
+    .nav-button {
+        display: none;
+    }
+
+    .menu-button {
+        display: block;
+    }
+
+    .hero-container,
+    .solution-grid,
+    .prototype-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-container {
+        gap: 70px;
+    }
+
+    .hero-content {
+        text-align: center;
+    }
+
+    .hero-content > p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-buttons,
+    .hero-stats {
+        justify-content: center;
+    }
+
+    .solution-content {
+        order: -1;
+    }
+
+    .process-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .benefits-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .benefit-card.large {
+        grid-row: auto;
+        min-height: 240px;
+    }
+
+    .alert-card {
+        right: 10px;
+    }
+}
+
+
+/* =====================================================
+   RESPONSIVE ORIGINAL - CELULAR
+===================================================== */
+
+@media (max-width: 600px) {
+    .nav-container {
+        padding: 0 20px;
+    }
+
+    .section {
+        padding: 85px 20px;
+    }
+
+    .hero-container {
+        padding: 60px 20px;
+    }
+
+    .hero h1 {
+        font-size: 48px;
+    }
+
+    .hero-stats {
+        gap: 25px;
+    }
+
+    .dashboard {
+        padding: 12px;
+    }
+
+    .map {
+        height: 250px;
+    }
+
+    .alert-card {
+        position: relative;
+        right: auto;
+        bottom: auto;
+        width: 100%;
+        margin-top: 15px;
+    }
+
+    .problem-grid,
+    .process-grid,
+    .benefits-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .solution-features {
+        grid-template-columns: 1fr;
+    }
+
+    .solution-visual {
+        min-height: 350px;
+    }
+
+    .circle-main {
+        width: 230px;
+        height: 230px;
+    }
+
+    .simulation-header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    .simulation-area {
+        height: 330px;
+    }
+
+    .prototype-image {
+        height: 300px;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .modal-content {
+        padding: 30px;
+    }
+}
+
+
+/* =====================================================
    EQUIPO
 ===================================================== */
 
@@ -906,7 +1028,6 @@ footer { background: #050d17; padding: 35px 30px; }
 ===================================================== */
 
 @media (max-width: 950px) {
-
     .team-grid {
         grid-template-columns: repeat(3, 1fr);
     }
@@ -923,11 +1044,9 @@ footer { background: #050d17; padding: 35px 30px; }
     .podcast-card {
         grid-template-columns: 1fr;
     }
-
 }
 
 @media (max-width: 600px) {
-
     .team-grid {
         grid-template-columns: 1fr;
     }
@@ -980,5 +1099,4 @@ footer { background: #050d17; padding: 35px 30px; }
     .resource-button {
         justify-content: center;
     }
-
 }
