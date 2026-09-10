@@ -5,6 +5,36 @@
 
 
 /* =====================================================
+   NAVEGACIÓN SUAVE
+===================================================== */
+
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+
+    link.addEventListener("click", function(event) {
+
+        const targetId = this.getAttribute("href");
+
+        if (!targetId || targetId === "#") {
+            return;
+        }
+
+        const target = document.querySelector(targetId);
+
+        if (target) {
+            event.preventDefault();
+
+            target.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+        }
+
+    });
+
+});
+
+
+/* =====================================================
    MENÚ MOBILE
 ===================================================== */
 
@@ -12,42 +42,63 @@ const menuButton = document.getElementById("menuButton");
 const navMenu = document.getElementById("navMenu");
 
 if (menuButton && navMenu) {
+
     menuButton.addEventListener("click", () => {
+
         navMenu.classList.toggle("active");
 
         const icon = menuButton.querySelector("i");
 
         if (icon) {
+
             if (navMenu.classList.contains("active")) {
+
                 icon.classList.remove("fa-bars");
                 icon.classList.add("fa-xmark");
+
             } else {
+
                 icon.classList.remove("fa-xmark");
                 icon.classList.add("fa-bars");
+
             }
+
         }
+
     });
+
 }
 
 
-/* Cerrar menú al seleccionar una sección */
+/* =====================================================
+   CERRAR MENÚ AL SELECCIONAR UNA SECCIÓN
+===================================================== */
 
-const navLinks = document.querySelectorAll("nav a");
+const navLinks = document.querySelectorAll("#navMenu a");
 
 navLinks.forEach(link => {
+
     link.addEventListener("click", () => {
+
         if (navMenu) {
             navMenu.classList.remove("active");
         }
 
         if (menuButton) {
+
             const icon = menuButton.querySelector("i");
+
             if (icon) {
+
                 icon.classList.remove("fa-xmark");
                 icon.classList.add("fa-bars");
+
             }
+
         }
+
     });
+
 });
 
 
@@ -64,24 +115,36 @@ const simTime = document.getElementById("simTime");
 let simulationRunning = false;
 
 if (simulateButton) {
+
     simulateButton.addEventListener("click", () => {
+
+        /* REINICIAR */
 
         if (
             simulateButton.textContent.includes("Reiniciar") &&
             !simulationRunning
         ) {
-            if (simPerson) simPerson.style.left = "25%";
-            if (detectionRing) {
-                detectionRing.style.left = "calc(25% - 22px)";
-                detectionRing.classList.remove("active");
+
+            if (simPerson) {
+                simPerson.style.left = "25%";
             }
 
-            if (simTime) simTime.textContent = "SISTEMA ACTIVO";
+            if (detectionRing) {
+
+                detectionRing.style.left = "calc(25% - 22px)";
+                detectionRing.classList.remove("active");
+
+            }
+
+            if (simTime) {
+                simTime.textContent = "SISTEMA ACTIVO";
+            }
 
             if (simulationStatus) {
+
                 simulationStatus.innerHTML = `
                     <div class="sim-status-icon">
-                        <i class="fa-solid fa-shield-check"></i>
+                        <i class="fa-solid fa-shield-halved"></i>
                     </div>
 
                     <div>
@@ -89,6 +152,7 @@ if (simulateButton) {
                         <p>Presiona "Simular detección" para iniciar.</p>
                     </div>
                 `;
+
             }
 
             simulateButton.innerHTML =
@@ -97,18 +161,28 @@ if (simulateButton) {
             return;
         }
 
+
+        /* EVITAR DOBLE CLIC */
+
         if (simulationRunning) {
             return;
         }
 
+
         simulationRunning = true;
+
 
         simulateButton.innerHTML =
             '<i class="fa-solid fa-spinner fa-spin"></i> Detectando...';
 
-        if (simTime) simTime.textContent = "ANALIZANDO PRESENCIA";
+
+        if (simTime) {
+            simTime.textContent = "ANALIZANDO PRESENCIA";
+        }
+
 
         if (simulationStatus) {
+
             simulationStatus.innerHTML = `
                 <div class="sim-status-icon">
                     <i class="fa-solid fa-radar"></i>
@@ -119,30 +193,40 @@ if (simulateButton) {
                     <p>Analizando ubicación...</p>
                 </div>
             `;
+
         }
 
 
-        /* Mover persona hacia el área restringida */
+        /* MOVER PERSONA */
 
         setTimeout(() => {
 
-            if (simPerson) simPerson.style.left = "67%";
-
-            if (detectionRing) {
-                detectionRing.style.left = "calc(67% - 22px)";
-                detectionRing.classList.add("active");
+            if (simPerson) {
+                simPerson.style.left = "67%";
             }
 
-            if (simTime) simTime.textContent = "⚠ ALERTA DETECTADA";
+            if (detectionRing) {
+
+                detectionRing.style.left = "calc(67% - 22px)";
+                detectionRing.classList.add("active");
+
+            }
+
+
+            if (simTime) {
+                simTime.textContent = "⚠ ALERTA DETECTADA";
+            }
+
 
             if (simulationStatus) {
+
                 simulationStatus.innerHTML = `
-                    <div class="sim-status-icon" style="color:#ff5d67;background:rgba(255,93,103,0.10)">
+                    <div class="sim-status-icon alert-status-icon">
                         <i class="fa-solid fa-triangle-exclamation"></i>
                     </div>
 
                     <div>
-                        <strong style="color:#ff5d67">
+                        <strong class="alert-status-text">
                             ¡Área restringida detectada!
                         </strong>
 
@@ -151,16 +235,20 @@ if (simulateButton) {
                         </p>
                     </div>
                 `;
+
             }
+
 
             simulateButton.innerHTML =
                 '<i class="fa-solid fa-rotate-right"></i> Reiniciar';
+
 
             simulationRunning = false;
 
         }, 1800);
 
     });
+
 }
 
 
@@ -175,43 +263,69 @@ const modalCloseButton = document.getElementById("modalCloseButton");
 
 
 function openModal() {
+
     if (proposalModal) {
+
         proposalModal.classList.add("active");
+
         document.body.style.overflow = "hidden";
+
     }
+
 }
 
 
 function closeProposalModal() {
+
     if (proposalModal) {
+
         proposalModal.classList.remove("active");
+
         document.body.style.overflow = "";
+
     }
+
 }
 
 
-if (proposalButton) proposalButton.addEventListener("click", openModal);
-if (closeModal) closeModal.addEventListener("click", closeProposalModal);
-if (modalCloseButton) modalCloseButton.addEventListener("click", closeProposalModal);
+if (proposalButton) {
+    proposalButton.addEventListener("click", openModal);
+}
 
 
-/* Cerrar haciendo click fuera */
+if (closeModal) {
+    closeModal.addEventListener("click", closeProposalModal);
+}
+
+
+if (modalCloseButton) {
+    modalCloseButton.addEventListener("click", closeProposalModal);
+}
+
+
+/* CERRAR AL HACER CLICK FUERA */
 
 if (proposalModal) {
+
     proposalModal.addEventListener("click", (event) => {
+
         if (event.target === proposalModal) {
             closeProposalModal();
         }
+
     });
+
 }
 
 
-/* Cerrar con Escape */
+/* CERRAR CON ESCAPE */
 
 document.addEventListener("keydown", (event) => {
+
     if (event.key === "Escape") {
         closeProposalModal();
     }
+
 });
 
 
@@ -220,8 +334,9 @@ document.addEventListener("keydown", (event) => {
 ===================================================== */
 
 const elementsToReveal = document.querySelectorAll(
-    ".problem-card, .process-card, .benefit-card, .component, .solution-content, .prototype-content"
+    ".problem-card, .process-card, .benefit-card, .component, .solution-content, .prototype-content, .team-card, .video-card"
 );
+
 
 elementsToReveal.forEach(element => {
     element.classList.add("reveal");
@@ -230,12 +345,19 @@ elementsToReveal.forEach(element => {
 
 const observer = new IntersectionObserver(
     (entries) => {
+
         entries.forEach(entry => {
+
             if (entry.isIntersecting) {
+
                 entry.target.classList.add("visible");
+
                 observer.unobserve(entry.target);
+
             }
+
         });
+
     },
     {
         threshold: 0.12
@@ -257,12 +379,18 @@ const person = document.getElementById("person");
 
 
 setInterval(() => {
-    if (!alertCard || !person) return;
+
+    if (!alertCard || !person) {
+        return;
+    }
 
     person.style.left = "62%";
 
+
     setTimeout(() => {
+
         person.style.left = "32%";
+
     }, 2500);
 
 }, 5000);
@@ -273,6 +401,7 @@ setInterval(() => {
 ===================================================== */
 
 function updateSystemTime() {
+
     const now = new Date();
 
     const hours = String(now.getHours()).padStart(2, "0");
@@ -281,14 +410,21 @@ function updateSystemTime() {
 
     const timeElement = document.getElementById("simTime");
 
+
     if (
         timeElement &&
         !timeElement.textContent.includes("ALERTA") &&
         !timeElement.textContent.includes("ANALIZANDO")
     ) {
-        timeElement.textContent = `SISTEMA ACTIVO · ${hours}:${minutes}:${seconds}`;
+
+        timeElement.textContent =
+            `SISTEMA ACTIVO · ${hours}:${minutes}:${seconds}`;
+
     }
+
 }
 
+
 setInterval(updateSystemTime, 1000);
+
 updateSystemTime();
